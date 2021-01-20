@@ -14,6 +14,7 @@ header {
     font-size: 20px;
     margin: 20px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .greenDiv {grid-area: greenDiv;}
@@ -37,6 +38,7 @@ header {
     text-align: center;
     font-size: 30px;
     padding-top: 90px;
+    cursor: pointer;
 }
 
 .greenDiv {
