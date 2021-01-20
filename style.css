@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin: 20px;
+}
+
+.greenDiv {grid-area: greenDiv;}
+.redDiv {grid-area: redDiv;}
+.yellowDiv {grid-area: yellowDiv;}
+.blueDiv {grid-area: blueDiv;}
+
+.board {
+    background-color: black;
+    border: 15px solid black;
+    height: 400px;
+    width: 400px;
+    border-radius: 100%;
+    display: grid;
+    grid-template-areas: 
+    "greenDiv redDiv"
+    "yellowDiv blueDiv"  
+}
+
+.greenDiv {
+    background-color: green;
+    border-radius: 100% 10% 80% 10%;
+    margin: 5px;
+}
+
+.redDiv {
+    background-color: red;
+    border-radius: 10% 100% 10% 80%;
+    margin: 5px;
+}
+
+.yellowDiv {
+    background-color: yellow;
+    border-radius: 10% 80% 10% 100%;
+    margin: 5px;
+}
+
+.blueDiv {
+    background-color: blue;
+    border-radius: 80% 10% 100% 10%;
+    margin: 5px;
+}
