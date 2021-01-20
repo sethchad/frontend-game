@@ -23,14 +23,20 @@ header {
 
 .board {
     background-color: black;
-    border: 15px solid black;
+    border: 10px solid black;
     height: 400px;
     width: 400px;
-    border-radius: 100%;
+    border-radius: 45%;
     display: grid;
     grid-template-areas: 
     "greenDiv redDiv"
     "yellowDiv blueDiv"  
+}
+
+.gameButton {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 90px;
 }
 
 .greenDiv {

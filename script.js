@@ -13,11 +13,36 @@ gameButton.forEach(gameButton => gameButton.addEventListener('mouseup', function
 // Game Play
 gameButton.forEach(gameButton => gameButton.addEventListener('click', clickHandler))
 
+let gameSequence = [];
+let playerSequence = [];
+let round = 0;
+
 function clickHandler(e) {
     e.preventDefault();
     console.log(Number(e.target.dataset.value));
 
-    
+    if (round < 10) 
+    {
+        playerSequence.push(Number(e.target.dataset.value))
+
+        for(i = 0; i < playerSequence.length; i++) {
+            if (playerSequence[i] == gameSequence[i]) {
+                console.log("correct")
+                console.log("player sequence length:", playerSequence.length)
+            } 
+            else
+            {
+                console.log("wrong, game over")
+            }
+        }
+    }
+    else
+    {
+        console.log("game over")
+    }
+
+
+    console.log("player sequence", playerSequence)
 }
 
 
@@ -28,7 +53,9 @@ function newGameHandler(e) {
     e.preventDefault();
     console.log(e);
 
-    let gameSequence = [];
+    round = 0;
+    gameSequence = [];
+    playerSequence = [];
 
     for (i = 0; i < 10; i++) {
         random = Math.floor(Math.random() * Math.floor(4));
