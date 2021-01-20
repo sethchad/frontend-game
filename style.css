@@ -2,11 +2,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
     text-align: center;
     margin: 20px;
+}
+
+.newGame {
+    font-size: 20px;
+    margin: 20px;
+    border-radius: 5px;
 }
 
 .greenDiv {grid-area: greenDiv;}

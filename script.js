@@ -4,7 +4,9 @@ gameButton.forEach(gameButton => gameButton.addEventListener('click', clickHandl
 
 function clickHandler(e) {
     e.preventDefault();
-    console.log(e);
+    console.log(Number(e.target.dataset.value));
+
+    e.target.style.opacity = "0.5";
 }
 
 document.querySelector('button').addEventListener('click', newGameHandler)
