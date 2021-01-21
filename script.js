@@ -26,7 +26,7 @@ function newGameHandler(e) {
     round = 0;
     gameSequence = [];
     playerSequence = [];
-    document.querySelector('.outcome').innerText = "";
+    document.querySelector('.outcome').innerText = "Score: ";
 
     // Generates game sequence
     for (i = 0; i < 10; i++) {
@@ -35,6 +35,20 @@ function newGameHandler(e) {
     }
 
     console.log(gameSequence)
+
+    let green = document.querySelector('[data-value = "0"]')
+    let red = document.querySelector('[data-value = "1"]')
+    let yellow = document.querySelector('[data-value = "2"]')
+    let blue = document.querySelector('[data-value = "3"]')
+
+
+    setTimeout(() => {
+        green.style.opacity = "0.5";
+        setTimeout(() => {
+            green.style.opacity = "1";
+        }, 1*1000);
+    }, 1*1000);
+
 }
 
 
