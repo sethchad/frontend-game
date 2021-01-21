@@ -27,8 +27,7 @@ function newGameHandler(e) {
     round = 1;
     gameSequence = [];
     playerSequence = [];
-    roundStr = "Round " + round;
-    document.querySelector('.outcome').innerText = roundStr;
+    document.querySelector('.outcome').innerText = "Round 1";
 
     // Generates game sequence
     for (i = 0; i < 10; i++) {
@@ -43,7 +42,25 @@ function newGameHandler(e) {
     let yellow = document.querySelector('[data-value = "2"]')
     let blue = document.querySelector('[data-value = "3"]')
 
-    // Light up buttons to show game sequence
+    green.style.opacity = "0.5";
+    red.style.opacity = "0.5";
+    yellow.style.opacity = "0.5";
+    blue.style.opacity = "0.5";
+
+    setTimeout(() => {
+        green.style.opacity = "1";
+        red.style.opacity = "1";
+        yellow.style.opacity = "1";
+        blue.style.opacity = "1";
+    }, 0.5*1000);
+
+    setTimeout(() => lightUpSequence(), 1*1000);
+}
+
+
+// Light up buttons to show game sequence
+
+function lightUpSequence() {
 
     for(i = 0; i < round; i++) 
     {
@@ -53,8 +70,6 @@ function newGameHandler(e) {
         else if (gameSequence[i] == 1) { color = document.querySelector('[data-value = "1"]'); }
         else if (gameSequence[i] == 2) { color = document.querySelector('[data-value = "2"]'); }
         else { color = document.querySelector('[data-value = "3"]');}
-
-       console.log("color", color)
 
         setTimeout(() => {
             color.style.opacity = "0.5";
@@ -81,11 +96,17 @@ function clickHandler(e) {
             } 
         }
     }
-    // else
-    // {
-    //     console.log("game over")
-    // }
 
-    console.log("player sequence", playerSequence)
-    
+    if (playerSequence.length = round) { 
+        round++;
+        roundStr = "Round " + round;
+        document.querySelector('.outcome').innerText = roundStr;
+        console.log("round", round)
+    }
+   
+    console.log("player sequence", playerSequence);
 }
+
+    
+    
+
