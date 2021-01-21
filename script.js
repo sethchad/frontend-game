@@ -5,6 +5,7 @@ document.querySelector('button').addEventListener('click', newGameHandler)
 let gameSequence = [];
 let playerSequence = [];
 let round = 0;
+let roundStr = "";
 
 function newGameHandler(e) {
     e.preventDefault();
@@ -23,10 +24,11 @@ function newGameHandler(e) {
     gameButton.forEach(gameButton => gameButton.addEventListener('click', clickHandler))
 
     // Resets variables
-    round = 0;
+    round = 1;
     gameSequence = [];
     playerSequence = [];
-    document.querySelector('.outcome').innerText = "Score: ";
+    roundStr = "Round " + round;
+    document.querySelector('.outcome').innerText = roundStr;
 
     // Generates game sequence
     for (i = 0; i < 10; i++) {
@@ -41,16 +43,30 @@ function newGameHandler(e) {
     let yellow = document.querySelector('[data-value = "2"]')
     let blue = document.querySelector('[data-value = "3"]')
 
+    // Light up buttons to show game sequence
 
-    setTimeout(() => {
-        green.style.opacity = "0.5";
+    for(i = 0; i < round; i++) 
+    {
+        console.log("game sequence", i, "is", gameSequence[i]);
+
+        if (gameSequence[i] == 0) { color = document.querySelector('[data-value = "0"]'); }
+        else if (gameSequence[i] == 1) { color = document.querySelector('[data-value = "1"]'); }
+        else if (gameSequence[i] == 2) { color = document.querySelector('[data-value = "2"]'); }
+        else { color = document.querySelector('[data-value = "3"]');}
+
+       console.log("color", color)
+
         setTimeout(() => {
-            green.style.opacity = "1";
-        }, 1*1000);
-    }, 1*1000);
+            color.style.opacity = "0.5";
+            setTimeout(() => {
+                color.style.opacity = "1";
+            }, 0.5*1000);
+        }, 0.5*1000);
+    } 
 
 }
 
+// Function handles button clicks during game play
 
 function clickHandler(e) {
     e.preventDefault();
@@ -61,14 +77,14 @@ function clickHandler(e) {
 
         for(i = 0; i < playerSequence.length; i++) {
             if (playerSequence[i] != gameSequence[i]) {
-                document.querySelector('.outcome').innerText = "wrong, game over";
+                document.querySelector('.outcome').innerText = "Wrong, Game Over.";
             } 
         }
     }
-    else
-    {
-        console.log("game over")
-    }
+    // else
+    // {
+    //     console.log("game over")
+    // }
 
     console.log("player sequence", playerSequence)
     

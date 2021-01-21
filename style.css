@@ -39,6 +39,7 @@ header {
     font-size: 30px;
     padding-top: 90px;
     cursor: pointer;
+    transition: 150ms;
 }
 
 .greenDiv {
