@@ -5,6 +5,7 @@ let gameSequence = [];
 let playerSequence = [];
 let round = 0;
 let roundStr = "";
+let sounds = "";
 let gameOver = false;
 
 // New Game listener and 
@@ -73,19 +74,30 @@ function lightUpSequence() {
     {
         //console.log("game sequence", i, "is", gameSequence[i]);
 
-        if (gameSequence[i] == 0) { color = document.querySelector('[data-value = "0"]'); }
-        else if (gameSequence[i] == 1) { color = document.querySelector('[data-value = "1"]'); }
-        else if (gameSequence[i] == 2) { color = document.querySelector('[data-value = "2"]'); }
-        else { color = document.querySelector('[data-value = "3"]');}
+        if (gameSequence[i] == 0) { 
+            color = document.querySelector('[data-value = "0"]'); 
+            sound = ".sound0"; }
+        else if (gameSequence[i] == 1) { 
+            color = document.querySelector('[data-value = "1"]'); 
+            sound = ".sound1"; }
+        else if (gameSequence[i] == 2) { 
+            color = document.querySelector('[data-value = "2"]');
+            sound = ".sound2"; }
+        else { 
+            color = document.querySelector('[data-value = "3"]');
+            sound = ".sound3"; }
 
-        blink(color, i);
+        blink(color, sound, i);
     } 
 }
 
 // Blinks lights 
 
-function blink(color, i) {
-    setTimeout(() => {color.style.opacity = "0.5"}, (i+0.5)*1000);
+function blink(color, sound, i) {
+    setTimeout(() => {
+        color.style.opacity = "0.5";
+        document.querySelector(sound).play();
+    }, (i+0.5)*1000);
     setTimeout(() => {color.style.opacity = "1"}, (i+1)*1000);
 }
 
@@ -98,7 +110,6 @@ function turnOffListeners() {
 }
 
 // Function handles button clicks during game play
-
 
 function clickHandler(e) {
     e.preventDefault();
@@ -129,93 +140,6 @@ function clickHandler(e) {
             lightUpSequence();
             
         } 
-        // else 
-        // {
-        //     console.log("player sequence length", playerSequence.length)
-        // }
     }
 }
 
-
-
-
-
-// function clickHandler(e) {
-//     e.preventDefault();
-
-//     // Main attempt 
-    
-//     if (round < 11) 
-//     {
-//         playerSequence.push(Number(e.target.dataset.value))
-        
-//         console.log("player sequence", playerSequence[round - 1]);
-//         console.log("round", round)
-        
-//         let length = playerSequence.length
-        
-//         if (playerSequence[round - 1] != gameSequence[round - 1]) {
-//             document.querySelector('.outcome').innerText = "Wrong, Game Over.";
-//             turnOffListeners();
-//         } 
-        
-//         // for(i = 0; i < playerSequence.length; i++) {
-//             //     if (playerSequence[i] != gameSequence[i]) {
-//                 //         document.querySelector('.outcome').innerText = "Wrong, Game Over.";
-//                 //         turnOffListeners();
-//                 //     } 
-//                 // }
-                
-//                 if (playerSequence.length < round) { 
-//                     console.log("player sequence length", playerSequence.length)
-                    
-//                 } 
-//                 else 
-//                 {
-//                     playerSequence = [];
-//                     round++;
-//                     roundStr = "Round " + round;
-//                     document.querySelector('.outcome').innerText = roundStr;
-//                     console.log("round:", round, "player sequence length:", playerSequence.length)
-                    
-//                     lightUpSequence();
-//                 }
-//             }
-//         }
-        
-//         // Secondary attempt
-//         // if (playerSequence.length < round) 
-//         // {
-//         //     playerSequence.push(Number(e.target.dataset.value))
-//         //     console.log("round:", round, "player entry:", playerSequence[round - 1], "game seq:", gameSequence[round - 1])
-    
-//         //     if (playerSequence[round - 1] != gameSequence[round - 1]) 
-//         //     {
-//         //         document.querySelector('.outcome').innerText = "Wrong, Game Over.";
-//         //         turnOffListeners();
-//         //     }
-//         // }
-//         // else 
-//         // { 
-//         //     /*don't do anything, just wait for the next click*/ 
-//         // }
-//         // console.log("player sequence length", playerSequence.length)
-    
-//         // if (playerSequence.length == round) 
-//         // {
-//         //     round++;
-//         //     console.log("round is incrementing")
-    
-//         //     if (round > 10) {
-//         //         document.querySelector('.outcome').innerText = "You Win! Way to go Rockstar!";
-//         //         turnOffListeners();
-//         //     }
-//         //     else 
-//         //     {
-//         //         playerSequence = [];
-//         //         roundStr = "Round " + round;
-//         //         document.querySelector('.outcome').innerText = roundStr;
-    
-//         //         lightUpSequence();
-//         //     }
-//         // }
