@@ -71,14 +71,26 @@ function lightUpSequence() {
         else if (gameSequence[i] == 2) { color = document.querySelector('[data-value = "2"]'); }
         else { color = document.querySelector('[data-value = "3"]');}
 
-        setTimeout(() => {
-            color.style.opacity = "0.5";
-            setTimeout(() => {
-                color.style.opacity = "1";
-            }, 0.5*1000);
-        }, 0.5*1000);
+        blink(color, i);
+        
+
+        // setTimeout(() => {
+        //     setTimeout(() => {
+        //         color.style.opacity = "0.5";
+        //         setTimeout(() => {
+        //             color.style.opacity = "1";
+        //         }, 0.5*1000);
+        //     }, 0.5*1000);
+        // }, i*1000)
+
     } 
 
+}
+
+function blink(color, i) {
+    console.log("color", color);
+    setTimeout(() => {color.style.opacity = "0.5"}, ((i+0.5)+0.5)*1000);
+    setTimeout(() => {color.style.opacity = "1"}, ((i+0.5)+1)*1000);
 }
 
 // Function handles button clicks during game play
@@ -98,13 +110,20 @@ function clickHandler(e) {
     }
 
     if (playerSequence.length = round) { 
-        round++;
+        playerSequence = [];
         roundStr = "Round " + round;
         document.querySelector('.outcome').innerText = roundStr;
-        console.log("round", round)
-    }
-   
+        console.log("round:", round, "player sequence length:", playerSequence.length)
+        round++;
+        
+        lightUpSequence();
+    } 
+    else 
+    {
+    console.log("player sequence length", playerSequence.length)
     console.log("player sequence", playerSequence);
+    }
+
 }
 
     
