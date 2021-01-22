@@ -1,9 +1,11 @@
 
 // Page Load Events
+let gameButton = document.querySelectorAll('.gameButton')
 let gameSequence = [];
 let playerSequence = [];
 let round = 0;
 let roundStr = "";
+let gameOver = false;
 
 // New Game listener and 
 document.querySelector('button').addEventListener('click', newGameHandler)
@@ -11,7 +13,6 @@ document.querySelector('button').addEventListener('click', newGameHandler)
 function newGameHandler(e) {
     e.preventDefault();
 
-    let gameButton = document.querySelectorAll('.gameButton')
 
     // Dims button on mouse down
     gameButton.forEach(gameButton => gameButton.addEventListener('mousedown', function(e) {
@@ -25,6 +26,7 @@ function newGameHandler(e) {
     gameButton.forEach(gameButton => gameButton.addEventListener('click', clickHandler))
 
     // Resets variables
+    gameOver = false;
     round = 1;
     gameSequence = [];
     playerSequence = [];
@@ -87,7 +89,16 @@ function blink(color, i) {
     setTimeout(() => {color.style.opacity = "1"}, (i+1)*1000);
 }
 
+function turnOffListeners() {
+    gameButton.forEach(gameButton => gameButton.removeEventListener('click', clickHandler))
+    gameButton.forEach(gameButton => gameButton.removeEventListener('mousedown', function(e) {
+        e.target.style.opacity = "0.5"}));
+    gameButton.forEach(gameButton => gameButton.removeEventListener('mouseup', function(e) {
+        e.target.style.opacity = "1"}));
+}
+
 // Function handles button clicks during game play
+
 
 function clickHandler(e) {
     e.preventDefault();
@@ -102,21 +113,13 @@ function clickHandler(e) {
         for(i = 0; i < playerSequence.length; i++) {
             if (playerSequence[i] != gameSequence[i]) {
                 document.querySelector('.outcome').innerText = "Wrong, Game Over.";
+                turnOffListeners();
+                console.log("game over, event listeners off")
+                gameOver = true;
             } 
         }
 
-        // if (playerSequence[round - 1] != gameSequence[round - 1]) {
-        //     document.querySelector('.outcome').innerText = "Wrong, Game Over.";
-        // }
-
-        //console.log("player sequence:", playerSequence);
-
-        if (playerSequence.length < round) { 
-            console.log("player sequence length", playerSequence.length)
-            
-        } 
-        else 
-        {
+        if (playerSequence.length == round && gameOver == false) { 
             playerSequence = [];
             round++;
             roundStr = "Round " + round;
@@ -124,6 +127,95 @@ function clickHandler(e) {
             console.log("round:", round, "player sequence length:", playerSequence.length)
             
             lightUpSequence();
-        }
+            
+        } 
+        // else 
+        // {
+        //     console.log("player sequence length", playerSequence.length)
+        // }
     }
 }
+
+
+
+
+
+// function clickHandler(e) {
+//     e.preventDefault();
+
+//     // Main attempt 
+    
+//     if (round < 11) 
+//     {
+//         playerSequence.push(Number(e.target.dataset.value))
+        
+//         console.log("player sequence", playerSequence[round - 1]);
+//         console.log("round", round)
+        
+//         let length = playerSequence.length
+        
+//         if (playerSequence[round - 1] != gameSequence[round - 1]) {
+//             document.querySelector('.outcome').innerText = "Wrong, Game Over.";
+//             turnOffListeners();
+//         } 
+        
+//         // for(i = 0; i < playerSequence.length; i++) {
+//             //     if (playerSequence[i] != gameSequence[i]) {
+//                 //         document.querySelector('.outcome').innerText = "Wrong, Game Over.";
+//                 //         turnOffListeners();
+//                 //     } 
+//                 // }
+                
+//                 if (playerSequence.length < round) { 
+//                     console.log("player sequence length", playerSequence.length)
+                    
+//                 } 
+//                 else 
+//                 {
+//                     playerSequence = [];
+//                     round++;
+//                     roundStr = "Round " + round;
+//                     document.querySelector('.outcome').innerText = roundStr;
+//                     console.log("round:", round, "player sequence length:", playerSequence.length)
+                    
+//                     lightUpSequence();
+//                 }
+//             }
+//         }
+        
+//         // Secondary attempt
+//         // if (playerSequence.length < round) 
+//         // {
+//         //     playerSequence.push(Number(e.target.dataset.value))
+//         //     console.log("round:", round, "player entry:", playerSequence[round - 1], "game seq:", gameSequence[round - 1])
+    
+//         //     if (playerSequence[round - 1] != gameSequence[round - 1]) 
+//         //     {
+//         //         document.querySelector('.outcome').innerText = "Wrong, Game Over.";
+//         //         turnOffListeners();
+//         //     }
+//         // }
+//         // else 
+//         // { 
+//         //     /*don't do anything, just wait for the next click*/ 
+//         // }
+//         // console.log("player sequence length", playerSequence.length)
+    
+//         // if (playerSequence.length == round) 
+//         // {
+//         //     round++;
+//         //     console.log("round is incrementing")
+    
+//         //     if (round > 10) {
+//         //         document.querySelector('.outcome').innerText = "You Win! Way to go Rockstar!";
+//         //         turnOffListeners();
+//         //     }
+//         //     else 
+//         //     {
+//         //         playerSequence = [];
+//         //         roundStr = "Round " + round;
+//         //         document.querySelector('.outcome').innerText = roundStr;
+    
+//         //         lightUpSequence();
+//         //     }
+//         // }
