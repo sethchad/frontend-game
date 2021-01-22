@@ -1,6 +1,7 @@
 
 // Page Load Events
-let gameButton = document.querySelectorAll('.gameButton')
+let gameButton = document.querySelectorAll('.gameButton');
+let audio = document.querySelectorAll('audio').forEach( audio => audio.playbackRate = 1.25);
 let gameSequence = [];
 let playerSequence = [];
 let round = 0;
@@ -17,7 +18,9 @@ function newGameHandler(e) {
 
     // Dims button on mouse down
     gameButton.forEach(gameButton => gameButton.addEventListener('mousedown', function(e) {
-        e.target.style.opacity = "0.5"}));
+        e.target.style.opacity = "0.5";
+        e.target.children[0].play();
+    }));
     
     // Returns button to full color on mouseup
     gameButton.forEach(gameButton => gameButton.addEventListener('mouseup', function(e) {
@@ -101,6 +104,9 @@ function blink(color, sound, i) {
     setTimeout(() => {color.style.opacity = "1"}, (i+1)*1000);
 }
 
+
+// Turns off event listeners when game is over
+
 function turnOffListeners() {
     gameButton.forEach(gameButton => gameButton.removeEventListener('click', clickHandler))
     gameButton.forEach(gameButton => gameButton.removeEventListener('mousedown', function(e) {
@@ -113,6 +119,8 @@ function turnOffListeners() {
 
 function clickHandler(e) {
     e.preventDefault();
+
+    console.log(e.target.children)
 
     if (round < 11) 
     {
