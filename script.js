@@ -149,5 +149,30 @@ function clickHandler(e) {
             
         } 
     }
+
+    if (round > 10) 
+    {
+        document.querySelector('.outcome').innerText = "You Win!!";
+        turnOffListeners();
+        console.log("game over, event listeners off")
+        gameOver = true;
+
+        let green = document.querySelector('[data-value = "0"]')
+        let red = document.querySelector('[data-value = "1"]')
+        let yellow = document.querySelector('[data-value = "2"]')
+        let blue = document.querySelector('[data-value = "3"]')
+
+        green.style.opacity = "0.5";
+        red.style.opacity = "0.5";
+        yellow.style.opacity = "0.5";
+        blue.style.opacity = "0.5";
+
+        setTimeout(() => {
+            green.style.opacity = "1";
+            red.style.opacity = "1";
+            yellow.style.opacity = "1";
+            blue.style.opacity = "1";
+        }, 0.5*1000);
+    }
 }
 

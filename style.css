@@ -1,21 +1,29 @@
 body {
+    font-family: 'Quantico', sans-serif;
+    background-color: pink;
+    margin: 0;
+}
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: pink;
 }
 
 header {
     text-align: center;
-    margin: 20px;
+    margin: 10px;
+    font-size: 20px;
 }
 
 .newGame {
     font-size: 20px;
-    margin: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #C0FFF4;
 }
 
 .greenDiv {grid-area: greenDiv;}
@@ -28,6 +36,7 @@ header {
     border: 10px solid black;
     height: 400px;
     width: 400px;
+    margin-bottom: 50px;
     border-radius: 45%;
     display: grid;
     grid-template-areas: 
@@ -76,4 +85,5 @@ footer {
     padding: 10px;
     background-color: black;
     color: gray;
+    
 }
