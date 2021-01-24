@@ -87,3 +87,18 @@ footer {
     color: gray;
     
 }
+
+@media (max-width: 576px) {
+    header {
+        font-size: 16px;
+    }
+
+    .newGame {
+        font-size: 16px;
+    }
+
+    .board {
+        height: 300px;
+        width: 300px;
+    }
+}
