@@ -52,7 +52,8 @@ function clickHandler(e) {
             
         } 
     }
-    ```
+    
+```
 
 ## List of Technologies
 - HTML
