@@ -3,7 +3,7 @@
 ## Description
 This project is an online version of the memory game Simon. Repeat the pattern of colors shown by Simon correctly for ten rounds, and you win! 
 
-![](Simon screenshot.png)
+![](Simon-Screenshot.png)
 
 ## Approach Taken
 My version of Simon uses a simple HTML interface along with CSS to provide a responsive experience for large or small screen viewing. I constructed a game board div with four game button divs within it, each having one of the simon sound effects embedded. 
